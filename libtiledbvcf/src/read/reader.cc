@@ -977,10 +977,28 @@ bool Reader::read_current_batch() {
     read_state_.async_query =
         std::async(std::launch::async, [query, verbose]() {
           auto t0 = std::chrono::steady_clock::now();
+          if (verbose) {
+            std::time_t start_time = std::chrono::system_clock::to_time_t(
+                std::chrono::system_clock::now());
+            std::string start_time_str = std::ctime(&start_time);
+            std::cout << "[ "
+                      << start_time_str.substr(0, start_time_str.length() - 1)
+                      << " ] "
+                      << "reader.cc"
+                      << ":" << __LINE__ << ": query started" << std::endl;
+          }
           auto st = query->submit();
           if (verbose) {
-            std::cout << "query completed in " << utils::chrono_duration(t0)
-                      << " sec." << std::endl;
+            std::time_t end_time = std::chrono::system_clock::to_time_t(
+                std::chrono::system_clock::now());
+            std::string end_time_str = std::ctime(&end_time);
+            std::cout << "[ "
+                      << end_time_str.substr(0, end_time_str.length() - 1)
+                      << " ] "
+                      << "reader.cc"
+                      << ":" << __LINE__ << ": query completed "
+                      << " in " << utils::chrono_duration(t0) << " sec."
+                      << std::endl;
           }
           return st;
         });
@@ -1021,10 +1039,27 @@ bool Reader::read_current_batch() {
       read_state_.async_query =
           std::async(std::launch::async, [query, verbose]() {
             auto t0 = std::chrono::steady_clock::now();
+            if (verbose) {
+              std::time_t start_time = std::chrono::system_clock::to_time_t(
+                  std::chrono::system_clock::now());
+              std::string start_time_str = std::ctime(&start_time);
+              std::cout << "[ "
+                        << start_time_str.substr(0, start_time_str.length() - 1)
+                        << " ] "
+                        << "reader.cc"
+                        << ":" << __LINE__ << ": query started" << std::endl;
+            }
             auto st = query->submit();
             if (verbose) {
-              std::cout << "query completed in " << utils::chrono_duration(t0)
-                        << " sec." << std::endl;
+              std::time_t end_time = std::chrono::system_clock::to_time_t(
+                  std::chrono::system_clock::now());
+              std::string end_time_str = std::ctime(&end_time);
+              std::cout << "[ "
+                        << end_time_str.substr(0, end_time_str.length() - 1)
+                        << " ] "
+                        << "reader.cc"
+                        << ":" << __LINE__ << ": query completed in "
+                        << utils::chrono_duration(t0) << " sec." << std::endl;
             }
             return st;
           });
@@ -1077,10 +1112,27 @@ bool Reader::read_current_batch() {
       read_state_.async_query =
           std::async(std::launch::async, [query, verbose]() {
             auto t0 = std::chrono::steady_clock::now();
+            if (verbose) {
+              std::time_t start_time = std::chrono::system_clock::to_time_t(
+                  std::chrono::system_clock::now());
+              std::string start_time_str = std::ctime(&start_time);
+              std::cout << "[ "
+                        << start_time_str.substr(0, start_time_str.length() - 1)
+                        << " ] "
+                        << "reader.cc"
+                        << ":" << __LINE__ << ": query started" << std::endl;
+            }
             auto st = query->submit();
             if (verbose) {
-              std::cout << "query completed in " << utils::chrono_duration(t0)
-                        << " sec." << std::endl;
+              std::time_t end_time = std::chrono::system_clock::to_time_t(
+                  std::chrono::system_clock::now());
+              std::string end_time_str = std::ctime(&end_time);
+              std::cout << "[ "
+                        << end_time_str.substr(0, end_time_str.length() - 1)
+                        << " ] "
+                        << "reader.cc"
+                        << ":" << __LINE__ << ": query completed in "
+                        << utils::chrono_duration(t0) << " sec." << std::endl;
             }
             return st;
           });
