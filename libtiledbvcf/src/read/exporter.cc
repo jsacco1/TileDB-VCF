@@ -1,4 +1,5 @@
 #include "read/exporter.h"
+#include "utils/logger_public.h"
 
 namespace tiledb {
 namespace vcf {
@@ -128,6 +129,15 @@ void Exporter::recover_record(
       str_buffer.push_back('\0');
       st = bcf_update_info(
           hdr, dst, key, str_buffer.data(), str_buffer.size(), type);
+      if (st < 0) {
+        LOG_WARN(
+            "Dropping INFO field not found in the VCF header: {}:{} {}={}",
+            contig_name,
+            dst->pos,
+            key,
+            str_buffer);
+        st = 0;
+      }
     } else {
       st = bcf_update_info(hdr, dst, key, info_ptr, nvalues, type);
     }
