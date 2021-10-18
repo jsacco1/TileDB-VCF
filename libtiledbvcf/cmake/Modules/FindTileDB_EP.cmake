@@ -83,7 +83,7 @@ else()
     else() # Build from source
         ExternalProject_Add(ep_tiledb
           PREFIX "externals"
-          URL "https://github.com/TileDB-Inc/TileDB/archive/lr/sparse-unordered-w-dups-multi-range-fix/ch10594.zip"
+          URL "https://github.com/TileDB-Inc/TileDB/archive/dev.zip"
           DOWNLOAD_NAME "tiledb.zip"
           CMAKE_ARGS
             -DCMAKE_INSTALL_PREFIX=${EP_INSTALL_PREFIX}
